@@ -16,7 +16,6 @@ class City(db.Model):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-
     if request.method == 'POST':
         new_city = request.form.get('city')
 
@@ -31,7 +30,6 @@ def index():
     weather_data = []
 
     for city in cities:
-
         r = requests.get(url.format(city.name)).json()
 
         weather = {
@@ -43,4 +41,9 @@ def index():
 
         }
         weather_data.append(weather)
+
     return render_template('weather.html', weather_data=weather_data)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
